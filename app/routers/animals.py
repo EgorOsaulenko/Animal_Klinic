@@ -2,7 +2,7 @@ from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.context import FSMContext
 
-from app.data import open_files
+from app.data import open_files, action_animals
 from app.keyboards.animals import build_animals_keyboard, built_animal_actions_keyboard
 
 
@@ -36,4 +36,24 @@ async def animal_actions(call_back: CallbackQuery, state: FSMContext):
         message=call_back.message,
         text=animal,
         keyboard=keyboard
+    )
+
+
+    @animal_router.callback_query(F.data.startswitch("remove_animal_"))
+    async def remove_animal(call_back: CallbackQuery, state: FSMContext):
+        anim_index = int(call_back.data.split("_")[-1])
+        msg = action_animals.remove_animal(anim_index)
+        await edit_or_answer(
+        message=call_back.message,
+        text=msg    
+        )
+
+
+@animal_router.callback_query(F.data.startswith("heal_animal_"))
+async def heal_animal(call_back: CallbackQuery, state: FSMContext):
+    anim_index = int(call_back.data("_")[-1])
+    msg = action_animals.heal_animal(anim_index)
+    await edit_or_answer(
+        message=call_back.message,
+        text=msg
     )

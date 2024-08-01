@@ -8,6 +8,10 @@ if not os.path.exists(list_files.ANIMALS):
     with open(list_files.ANIMALS, "w", encoding="utf-8") as file:
         json.dump([], file)
 
+if not os.path.exists(list_files.HEAL_ANIMALS):
+    with open (list_files.HEAL_ANIMALS, "w", encoding="utf-8") as file:
+        json.dump([], file)
+
 
 def get_animals(path: str = list_files.ANIMALS) -> list[str]:
     with open(path, "r", encoding="utf-8") as file:
@@ -19,3 +23,10 @@ def get_animals(path: str = list_files.ANIMALS) -> list[str]:
 def  get_animal(anim_index: int) -> str:
     animals = get_animals()
     return animals[anim_index]
+
+
+def get_heal_animals(path: str = list_files.HEAL_ANIMALS) -> list[str]:
+    with open(path, "r", encoding="utf-8") as file:
+        heal_animals = json.load(file)
+
+    return heal_animals
