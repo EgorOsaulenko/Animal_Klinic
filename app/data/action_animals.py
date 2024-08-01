@@ -28,3 +28,20 @@ def heal_animal(anim_index: int) -> str:
         json.dump(heal_animals, file)
 
     msg = f"Тварину '{animal}' успішно вилікувано"
+    return msg
+
+
+def add_animal(animal: str) -> str:
+    animals = open_files.get_animals()
+
+    if animal in animals:
+        msg = f"Тварина '{animal}' вже є у списку"
+        return msg
+    
+    animals.append(animal)
+
+    with open(list_files.ANIMALS, "w", encoding="utf-8") as file:
+        json.dump(animals, file)
+
+    msg = f"Тварину '{animal}' успішно додано"
+    return msg
