@@ -10,5 +10,5 @@ def add_review(review: str) -> str:
     with open(list_files.REVIEWS, "w", encoding="utf-8") as file:
         json.dump(reviews, file)
 
-        msg = f"Відгук '{review}' успішно додано."
-        return msg
+    msg = f"Відгук '{review}' успішно додано."
+    return msg

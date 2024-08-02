@@ -24,7 +24,7 @@ def get_animals(path: str = list_files.ANIMALS) -> list[str]:
     return animals
 
 
-def  get_animal(anim_index: int) -> str:
+def get_animal(anim_index: int) -> str:
     animals = get_animals()
     return animals[anim_index]
 
